@@ -1,9 +1,13 @@
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, } from 'react-leaflet';
 import OpacityController from './OpacityController';
 import FlippedYTileLayer from './FlippedYTileLayer';
 import TileDebugger from './TileDebugger';
 import { useState, useRef } from 'react';
 import CustomPopup from './CustomPopup';
+import L from 'leaflet';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import 'leaflet/dist/leaflet.css';
 
 function MapView() {
     const [opacity, setOpacity] = useState(30);
@@ -18,6 +22,15 @@ function MapView() {
             markerRef.current.closePopup(); // ← chuẩn cách Leaflet
         }
     };
+
+    const customIcon = new L.Icon({
+        iconUrl: markerIcon,
+        shadowUrl: markerShadow,
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
 
     return (
         <MapContainer center={[10.739065, 106.722934]} zoom={13} minZoom={12} maxZoom={16} style={{ height: '100vh', width: '100%' }}>
@@ -37,7 +50,7 @@ function MapView() {
                 setShowTileLayer={setShowTileLayer}
             />
 
-            <Marker position={[10.739065, 106.722934]} ref={markerRef}>
+            <Marker position={[10.739065, 106.722934]} ref={markerRef} icon={customIcon}>
                 <Popup>
                     <CustomPopup handleShowLayer={handleShowLayer} />
                 </Popup>
