@@ -23,6 +23,7 @@ function FlippedYTileLayer({ opacity }) {
             zIndex: 1000,
             errorTileUrl: '/not-found.png',
             tileSize: 256,
+            edgeBufferTiles: 2,
         });
 
         flippedLayer.addTo(map);
