@@ -11,7 +11,7 @@ const OpacityControl = ({opacity, setOpacity}) => {
         width: 250,
         zIndex: 1000,
       }}
-      title='Độ mở của bản đồ'
+      title='Độ mờ của bản đồ'
     >
       <Slider
         min={0}
@@ -19,9 +19,6 @@ const OpacityControl = ({opacity, setOpacity}) => {
         value={opacity}
         onChange={setOpacity}
       />
-      <div style={{ marginTop: 12 }}>
-        <p>Test</p>
-      </div>
     </Card>
   );
 };
